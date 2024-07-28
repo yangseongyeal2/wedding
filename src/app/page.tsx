@@ -26,7 +26,7 @@ export default function Home() {
     };
 
     const handleCopy = () => {
-        navigator.clipboard.writeText("국민은행 778802-04-189882 양성열");
+        navigator.clipboard.writeText("국민은행 778802-04-189882");
         alert("복사되었습니다.");
     };
 
