@@ -13,9 +13,9 @@ export default function Home() {
 
     const handleActionClick = (action: string) => {
         if (action === "map") {
-            window.open("https://maps.app.goo.gl/fC19gtJwWsQHwQWY6", '_blank');
+            window.open("https://maps.app.goo.gl/fC19gtJwWsQHwQWY6");
         } else if (action === "traffic") {
-            window.open("https://www.sheratongrandtaipei.com/websev?lang=kr&ref=pages&cat=1&id=3", '_blank');
+            window.open("https://www.sheratongrandtaipei.com/websev?lang=kr&ref=pages&cat=1&id=3");
         } else if (action === "money") {
             setIsModalOpen(true);
         }
