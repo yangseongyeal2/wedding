@@ -1,113 +1,158 @@
+'use client'
 import Image from "next/image";
+import React, { useState } from "react";
+import {Box, Button, Fab, Modal, Zoom} from '@mui/material';
+import {FaCar, FaEnvelope, FaInfo, FaMap, FaPhone} from "react-icons/fa";
+import { HiCursorClick } from "react-icons/hi";
+import {FaC} from "react-icons/fa6";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedAction, setSelectedAction] = useState<string | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    const handleActionClick = (action: string) => {
+        console.log(`Action ${action} clicked`);
+        //setSelectedAction(action);
+        if(action === "map"){
+            window.open("https://maps.app.goo.gl/fC19gtJwWsQHwQWY6", '_blank');
+        }else if(action === "traffic"){
+            window.open("https://www.sheratongrandtaipei.com/websev?lang=kr&ref=pages&cat=1&id=3", '_blank');
+        }else if(action === "money"){
+            setIsModalOpen(true)
+        }
+    };
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+    const handleCopy = () => {
+        navigator.clipboard.writeText("국민은행 778802-04-189882 양성열");
+        alert("복사되었습니다.");
+    }
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    return (
+        <main className="max-w-xl mx-auto bg-white w-full h-screen overflow-auto no-scrollbar relative">
+            <div className="flex flex-col overflow-auto w-full h-full no-scrollbar">
+                <div className="relative w-full" style={{ paddingBottom: '140.3%' }}>
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/1.png"
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            alt=""
+                        />
+                    </div>
+                </div>
+                <div className="relative w-full" style={{ paddingBottom: '140.3%' }}>
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/2.png"
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            alt=""
+                        />
+                    </div>
+                </div>
+                <div className="relative w-full" style={{ paddingBottom: '140.3%' }}>
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/3noclick.png"
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            alt=""
+                        />
+                    </div>
+                </div>
+                <div className="absolute bottom-1 right-1 flex flex-col items-end space-y-4">
+                    <Fab
+                        aria-label="add"
+                        onClick={() => setIsOpen(!isOpen)}
+                        style={{ backgroundColor: '#3B5998', color: 'white' }}
+                    >
+                        <HiCursorClick style={{ fontSize: 25 }} />
+                    </Fab>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+                    <Zoom in={isOpen} unmountOnExit>
+                        <div className="flex flex-col items-end space-y-2">
+                            <div className="flex items-center space-x-2">
+                                <div className={'bg-white py-2 px-2'}>
+                                    <span className="text-[#4C6174]">마음 전하실곳</span>
+                                </div>
+                                <Fab
+                                    aria-label="contact"
+                                    onClick={() => handleActionClick('money')}
+                                    style={{backgroundColor: '#3B5998', color: 'white'}}
+                                >
+                                    <FaEnvelope style={{fontSize: 25}}/>
+                                </Fab>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <div className={'bg-white py-2 px-2'}>
+                                    <span className="text-[#4C6174]">교통 안내</span>
+                                </div>
+                                <Fab
+                                    aria-label="info"
+                                    onClick={() => handleActionClick('traffic')}
+                                    style={{backgroundColor: '#3B5998', color: 'white'}}
+                                >
+                                    <FaCar style={{fontSize: 25}}/>
+                                </Fab>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <div className={'bg-white py-2 px-2'}>
+                                    <span className="text-[#4C6174]">지도로 보기</span>
+                                </div>
+                                <Fab
+                                    aria-label="contact"
+                                    onClick={() => handleActionClick('map')}
+                                    style={{backgroundColor: '#3B5998', color: 'white'}}
+                                >
+                                    <FaMap style={{fontSize: 25}}/>
+                                </Fab>
+                            </div>
+                        </div>
+                    </Zoom>
+                </div>
+            </div>
+            {/* 모달 팝업 */}
+            <Modal
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 'calc(100% * 2 / 3)',
+                        maxWidth: 400, // 최대 너비 설정
+                        height: 'calc(100% * 2 / 3)',
+                        maxHeight: 400, // 최대 높이 설정
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <h2 id="modal-title" className="text-center">마음 전하실곳</h2>
+                    <p id="modal-description" className="text-center">국민은행 778802-04-189882 양성열</p>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleCopy}
+                        sx={{ mt: 2 }}
+                    >
+                        복사하기
+                    </Button>
+                </Box>
+            </Modal>
+        </main>
+    );
 }
