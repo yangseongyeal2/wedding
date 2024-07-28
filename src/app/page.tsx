@@ -169,7 +169,7 @@ export default function Home() {
                                 autoPlay
                                 loop
                             >
-                                <source src="/hi.mp4" type="video/mp4"/>
+                                <source src="/hi2.mp4" type="video/mp4"/>
                                 Your browser does not support the video tag.
                             </video>
                             <div className={'flex flex-col'}><p id="modal-description" className="text-center">국민은행</p>
