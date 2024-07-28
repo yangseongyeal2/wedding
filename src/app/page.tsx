@@ -51,7 +51,7 @@ export default function Home() {
                     <div className="relative w-full" style={{paddingBottom: '140.3%'}}>
                         <div className="absolute inset-0">
                             <Image
-                                src="/2.png"
+                                src="/2-2.png"
                                 fill
                                 style={{objectFit: 'cover'}}
                                 alt=""
