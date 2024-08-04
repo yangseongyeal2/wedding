@@ -7,10 +7,10 @@ import React, {useState} from "react";
 import theme from "tailwindcss/defaultTheme";
 import {useAtom} from "jotai";
 import {showModalMoneyAtom} from "@/app/atom/atom";
+import RSVP from "@/app/component/RSVP";
 
 export default function ImagesCol({theme}:{theme:any}) {
     const [isOpen, setIsOpen] = useState(false);
-    //const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useAtom(showModalMoneyAtom);
 
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -124,6 +124,7 @@ export default function ImagesCol({theme}:{theme:any}) {
                     </div>
                 </Zoom>
             </div>
+            <RSVP/>
 
 </div>
 )
