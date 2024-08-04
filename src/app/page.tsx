@@ -29,20 +29,18 @@ export default function Home() {
 
     return (
         <ThemeProvider theme={theme}>
-            <main className="max-w-xl mx-auto bg-white w-full">
+            <main className="max-w-xl mx-auto bg-custom-beige w-full">
                 <AudioButton/>
-                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar scrollable-content">
+                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar">
                     <ImagesCol />
                     {showOverlay && (
                         <TextReveal text={fullWelcomeText}/>
                     )}
                     <RSVP/>
                 </div>
-
+                <FloatingButton theme={theme}/>
                 <FloatingModal/>
-
             </main>
-            <FloatingButton theme={theme}/>
             <ToastContainer
                 position="top-center"
                 autoClose={2000}

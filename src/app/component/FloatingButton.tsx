@@ -22,7 +22,7 @@ export default function FloatingButton({theme}: { theme: any }) {
         }
     };// 작은 화면에서는 40px, 큰 화면에서는 56px
     return (
-        <div className="fixed bottom-4 right-4 flex flex-col items-end space-y-4">
+        <div className="sticky bottom-4 pr-4 flex flex-col items-end space-y-4">
             <Fab
                 aria-label="add"
                 onClick={() => setIsOpen(!isOpen)}
