@@ -13,12 +13,6 @@ export default function AudioButton() {
         const audio = audioRef.current;
         if (audio) {
             audio.volume = 0.5;
-            // audio.play().then(() => {
-            //     setIsPlaying(true);
-            // }).catch(error => {
-            //     console.log("Auto-play was prevented");
-            //     setIsPlaying(false);
-            // });
             const playAttempt = setInterval(() => {
                 audio.play()
                     .then(() => {
