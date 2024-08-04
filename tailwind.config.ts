@@ -36,6 +36,7 @@ const config: Config = {
       fontFamily: {
         'ink-lipquid': ['InkLipquid', 'sans-serif'],
       },
+
     },
   },
   plugins: [],

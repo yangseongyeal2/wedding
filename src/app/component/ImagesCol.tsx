@@ -36,6 +36,7 @@ export default function ImagesCol({theme}:{theme:any}) {
                         fill
                         style={{objectFit: 'cover'}}
                         alt=""
+                        priority
                     />
                 </div>
             </div>
@@ -46,6 +47,7 @@ export default function ImagesCol({theme}:{theme:any}) {
                         fill
                         style={{objectFit: 'cover'}}
                         alt=""
+                        priority
                     />
                 </div>
             </div>
@@ -56,6 +58,7 @@ export default function ImagesCol({theme}:{theme:any}) {
                         fill
                         style={{objectFit: 'cover'}}
                         alt=""
+                        priority
                     />
                 </div>
             </div>

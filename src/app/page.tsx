@@ -26,7 +26,7 @@ export default function Home() {
 
     return (
         <ThemeProvider theme={theme}>
-            <main className="max-w-xl mx-auto bg-white w-full h-screen overflow-auto no-scrollbar relative full-height">
+            <main className="max-w-xl mx-auto bg-white w-full h-screen overflow-auto no-scrollbar relative">
                 <AudioButton/>
                 <div className="flex flex-col overflow-auto w-full h-full no-scrollbar">
                     <ImagesCol theme={theme}/>

@@ -17,6 +17,7 @@
 }
 html, body {
   height: 100%;
+  height: -webkit-fill-available;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -77,3 +78,5 @@ input[type="number"] {
 .audio-control-svg:hover {
   opacity: 0.8;
 }
+
+
