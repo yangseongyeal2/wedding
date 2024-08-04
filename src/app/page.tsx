@@ -41,7 +41,7 @@ export default function Home() {
         <ThemeProvider theme={theme}>
             <main className="max-w-xl mx-auto bg-white w-full h-screen relative">
                 <AudioButton/>
-                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar scrollable-content">
+                <div className="flex flex-col overflow-y-auto w-full no-scrollbar scrollable-content">
                     <ImagesCol theme={theme}/>
                     {showOverlay && (
                         <TextReveal text={fullWelcomeText}/>
