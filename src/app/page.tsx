@@ -24,11 +24,24 @@ export default function Home() {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        const forceReflow = () => {
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // 강제 리플로우 트리거
+            document.body.style.display = '';
+        };
+
+        forceReflow();
+        window.addEventListener('resize', forceReflow);
+
+        return () => window.removeEventListener('resize', forceReflow);
+    }, []);
+
     return (
         <ThemeProvider theme={theme}>
             <main className="max-w-xl mx-auto bg-white w-full h-screen relative">
                 <AudioButton/>
-                <div className="flex flex-col overflow-auto w-full h-full no-scrollbar scrollable-content">
+                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar scrollable-content">
                     <ImagesCol theme={theme}/>
                     {showOverlay && (
                         <TextReveal text={fullWelcomeText}/>
