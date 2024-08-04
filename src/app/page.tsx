@@ -8,6 +8,8 @@ import TextReveal from "@/app/component/TextReveal";
 import {ToastContainer} from "react-toastify";
 import {LoadingOverlay} from "@/app/component/LoadingOverlay";
 import AudioButton from "@/app/component/AudioButton";
+import RSVP from "@/app/component/RSVP";
+import FloatingButton from "@/app/component/FloatingButton";
 
 export default function Home() {
     const [showOverlay, setShowOverlay] = useState(true);
@@ -24,31 +26,23 @@ export default function Home() {
         return () => clearTimeout(timer);
     }, []);
 
-    useEffect(() => {
-        const forceReflow = () => {
-            document.body.style.display = 'none';
-            document.body.offsetHeight; // 강제 리플로우 트리거
-            document.body.style.display = '';
-        };
-
-        forceReflow();
-        window.addEventListener('resize', forceReflow);
-
-        return () => window.removeEventListener('resize', forceReflow);
-    }, []);
 
     return (
         <ThemeProvider theme={theme}>
-            <main className="max-w-xl mx-auto bg-white w-full h-screen relative">
+            <main className="max-w-xl mx-auto bg-white w-full">
                 <AudioButton/>
-                <div className="flex flex-col overflow-y-auto w-full no-scrollbar scrollable-content">
-                    <ImagesCol theme={theme}/>
+                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar scrollable-content">
+                    <ImagesCol />
                     {showOverlay && (
                         <TextReveal text={fullWelcomeText}/>
                     )}
+                    <RSVP/>
                 </div>
+
                 <FloatingModal/>
+
             </main>
+            <FloatingButton theme={theme}/>
             <ToastContainer
                 position="top-center"
                 autoClose={2000}

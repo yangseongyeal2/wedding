@@ -40,16 +40,7 @@ export default function RSVP() {
                     </div>
                 </div>
             </div>
-            {/*<div className={'flex flex-col py-[32px] bg-custom-beige items-center'}>*/}
-            {/*    <div className={'inline-flex '}>*/}
-            {/*        <span className={'text-center text-dark-gray'}>신랑 양성열 ❤️ 신부 챈얜팡</span>*/}
-            {/*    </div>*/}
-            {/*    <span className={'text-center font-normal'}>참석 의사</span>*/}
-            {/*    <SizedBox height={20}/>*/}
-            {/*    <span className={'text-center font-normal text-sub-gray opacity-50'}>모든 분들을 소중히 모실 수 있도록 전해주세요</span>*/}
-            {/*</div>*/}
-
-            <RSVPModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <RSVPModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </div>
     )
 }
