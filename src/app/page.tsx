@@ -7,6 +7,7 @@ import ImagesCol from "@/app/component/ImagesCol";
 import TextReveal from "@/app/component/TextReveal";
 import {ToastContainer} from "react-toastify";
 import {LoadingOverlay} from "@/app/component/LoadingOverlay";
+import AudioButton from "@/app/component/AudioButton";
 
 export default function Home() {
     const [showOverlay, setShowOverlay] = useState(true);
@@ -27,6 +28,7 @@ export default function Home() {
     return (
         <ThemeProvider theme={theme}>
             <main className="max-w-xl mx-auto bg-white w-full h-screen overflow-auto no-scrollbar relative">
+                <AudioButton/>
                 <div className="flex flex-col overflow-auto w-full h-full no-scrollbar">
                     <ImagesCol theme={theme}/>
                     {showOverlay && (

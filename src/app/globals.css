@@ -56,3 +56,23 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.audio-control-svg {
+  animation: pulse 2s infinite;
+}
+
+.audio-control-svg:hover {
+  opacity: 0.8;
+}
