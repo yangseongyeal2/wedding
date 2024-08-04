@@ -7,8 +7,8 @@ import React from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "양성열 ❤️첀얜팡 모바일 청첩장",
-  description: "양성열 ❤️첀얜팡 모바일 청첩장",
+  title: "성열 ❤ 얜팡 모바일 청첩장",
+  description: "성열 ❤ 얜팡 모바일 청첩장",
 };
 
 export default function RootLayout({

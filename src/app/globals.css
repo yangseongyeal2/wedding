@@ -36,6 +36,21 @@ html, body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+/* 모든 브라우저에 대한 스크롤바 숨김 */
+* {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+/* Webkit 브라우저 (Chrome, Safari 등)에 대한 스크롤바 숨김 */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS의 스크롤 동작 유지 */
+.scrollable-content {
+  -webkit-overflow-scrolling: touch;
+}
 
 @layer utilities {
   .text-balance {
