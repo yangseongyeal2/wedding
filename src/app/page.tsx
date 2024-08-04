@@ -19,7 +19,7 @@ export default function Home() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowOverlay(false);
-        }, fullWelcomeText.length * 50 + 3000); // 애니메이션 시간 + 추가 대기 시간
+        }, fullWelcomeText.length * 50 + 2000); // 애니메이션 시간 + 추가 대기 시간
 
         return () => clearTimeout(timer);
     }, []);
