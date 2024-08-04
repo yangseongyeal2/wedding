@@ -6,7 +6,7 @@ export default function RSVP() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className={'bg-custom-beige flex flex-col items-center py-20'}>
-            <span className={'text-4xl font-normal'}> RSVP </span>
+            <span className={'text-4xl font-normal text-dark-blue'}> RSVP </span>
             <div className={'flex flex-col py-[24px]'}>
                 <span className={'text-center font-normal'}>참석 의사</span>
                 <SizedBox height={20}/>

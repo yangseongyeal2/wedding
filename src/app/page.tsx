@@ -10,11 +10,11 @@ import {LoadingOverlay} from "@/app/component/LoadingOverlay";
 
 export default function Home() {
     const [showOverlay, setShowOverlay] = useState(true);
-    const [welcomeText, setWelcomeText] = useState("");
+    //const [welcomeText, setWelcomeText] = useState("");
     const theme = createTheme();
 
     const fullWelcomeText = "소중한 분들을 초대합니다";
-    const typingSpeed = 200; // ms per character
+    //const typingSpeed = 200; // ms per character
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -34,7 +34,6 @@ export default function Home() {
                     )}
                 </div>
                 <FloatingModal/>
-
             </main>
             <ToastContainer
                 position="top-center"
@@ -43,7 +42,6 @@ export default function Home() {
                 closeOnClick={true}
                 pauseOnHover={false}
                 draggable={false}
-
             />
             <LoadingOverlay />
         </ThemeProvider>
