@@ -15,12 +15,11 @@ export default function Home() {
     const theme = createTheme();
 
     const fullWelcomeText = "소중한 분들을 초대합니다";
-    //const typingSpeed = 200; // ms per character
-
+    const typingSpeed = 50; // ms per character
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowOverlay(false);
-        }, fullWelcomeText.length * 50 + 2000); // 애니메이션 시간 + 추가 대기 시간
+        }, fullWelcomeText.length * typingSpeed + 2000); // 애니메이션 시간 + 추가 대기 시간
 
         return () => clearTimeout(timer);
     }, []);
