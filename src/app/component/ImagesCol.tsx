@@ -4,12 +4,11 @@ import {Fab, useMediaQuery, Zoom} from "@mui/material";
 import {HiCursorClick} from "react-icons/hi";
 import {FaCar, FaEnvelope, FaMap} from "react-icons/fa";
 import React, {useState} from "react";
-import theme from "tailwindcss/defaultTheme";
 import {useAtom} from "jotai";
 import {showModalMoneyAtom} from "@/app/atom/atom";
 import RSVP from "@/app/component/RSVP";
 
-export default function ImagesCol({theme}:{theme:any}) {
+export default function ImagesCol({theme}: { theme: any }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useAtom(showModalMoneyAtom);
 
@@ -28,7 +27,7 @@ export default function ImagesCol({theme}:{theme:any}) {
     };
 
     return (
-        <div className={'overflow-auto no-scrollbar'}>
+        <div className={''}>
             <div className="relative w-full" style={{paddingBottom: '140.3%'}}>
                 <div className="absolute inset-0">
                     <Image
@@ -128,7 +127,6 @@ export default function ImagesCol({theme}:{theme:any}) {
                 </Zoom>
             </div>
             <RSVP/>
-
-</div>
-)
+        </div>
+    )
 }
