@@ -18,7 +18,7 @@ export default function ImagesCol() {
             </div>
             <div className="relative w-full" style={{paddingBottom: '140.3%'}}>
                     <Image
-                        src="/2-3.png"
+                        src="/2.png"
                         fill
                         style={{objectFit: 'cover'}}
                         alt=""
