@@ -11,13 +11,17 @@ interface RSVPModalProps {
     onClose: () => void;
 }
 
-const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
+
+export default function RSVPModalTW({isOpen, onClose}: RSVPModalProps) {
     const [side, setSide] = useState('');
     const [attendance, setAttendance] = useState<boolean | null>(null);
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [companion, setCompanion] = useState<number>(0);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [children, setChildren] = useState<number>(0);
+    const [childrenSeat, setChildrenSeat] = useState<number>(0);
+    const [vegetarian, setVegetarian] = useState<number>(0);
+    //const [isModalOpen, setIsModalOpen] = useState(false);
     const {showLoading, hideLoading} = useLoading()
 
     if (!isOpen) return null;
@@ -25,7 +29,7 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
     const onClickSend = async () => {
         showLoading();
         if (side === '') {
-            toast.error("어느 분의 하객이신가요?", {
+            toast.error("與新人的關係", {
                 position: "bottom-center",
             });
             hideLoading()
@@ -61,9 +65,9 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
             attendance: attendance,
             createdAt: Timestamp.now(),
             companion: companion,
-            children:0,
-            childrenSeat:0,
-            vegetarian:0,
+            children:children,
+            childrenSeat: childrenSeat,
+            vegetarian:vegetarian,
         })
         await guestRepository.uploadGuest(guest)
         toast.success("참석 의사가 전달되었습니다.", {
@@ -85,7 +89,7 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
                 <div className="text-center mb-6">
                     <div className={'flex flex-row justify-between'}>
                         <div className={'w-6 h-6'}></div>
-                        <h2 className="text-2xl font-normal leading-snug opacity-90">참석의사 전달</h2>
+                        <h2 className="text-2xl font-normal leading-snug opacity-90">婚禮出席統計回函</h2>
                         <button
                             className=" right-4 top-4 text-gray-500 hover:text-gray-700"
                             onClick={onClose}
@@ -99,39 +103,56 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
                     </div>
 
                     <p className="text-sm text-[#9b8d82] mt-2 px-6">
-                        축하해 주시는 한 분 한 분을 소중히 모실 수 있도록 참석 의사를 사전에 전달해 주시길 부탁드립니다.
+                        為了讓您在參加我們婚禮時能留下美好回憶，請提供以下資訊給我們，
+                        無論您能不能來現場祝福我們，都請別有壓力。 ：）
                     </p>
                 </div>
 
                 <div className="space-y-6">
                     <div>
                         <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
-                            어느 분의 하객이신가요?
+                            與新人的關係
                             <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
                         </label>
                         <div className="flex gap-x-2">
                             <button
                                 className={`w-1/2 py-3 rounded-lg ${
-                                    side === '신랑' ? 'bg-[#c2b0a2] text-white' : 'bg-white text-[#999999]'
+                                    side === '女方家人' ? 'bg-[#c2b0a2] text-white' : 'bg-white text-[#999999]'
                                 }`}
-                                onClick={() => setSide('신랑')}
+                                onClick={() => setSide('女方家人')}
                             >
-                                신랑
+                                女方家人
                             </button>
                             <button
                                 className={`w-1/2 py-3 rounded-lg ${
-                                    side === '신부' ? 'bg-[#c2b0a2] text-white' : 'bg-white text-[#999999]'
+                                    side === '女方親友' ? 'bg-[#c2b0a2] text-white' : 'bg-white text-[#999999]'
                                 }`}
-                                onClick={() => setSide('신부')}
+                                onClick={() => setSide('女方親友')}
                             >
-                                신부
+                                女方親友
+                            </button>
+                            <button
+                                className={`w-1/2 py-3 rounded-lg ${
+                                    side === '女方同事' ? 'bg-[#c2b0a2] text-white' : 'bg-white text-[#999999]'
+                                }`}
+                                onClick={() => setSide('女方同事')}
+                            >
+                                女方同事
+                            </button>
+                            <button
+                                className={`w-1/2 py-3 rounded-lg ${
+                                    side === '其他' ? 'bg-[#c2b0a2] text-white' : 'bg-white text-[#999999]'
+                                }`}
+                                onClick={() => setSide('其他')}
+                            >
+                                其他
                             </button>
                         </div>
                     </div>
 
                     <div>
                         <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
-                            참석하실 수 있나요?
+                            是否出席
                             <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
                         </label>
                         <div className="flex gap-x-2">
@@ -141,7 +162,7 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
                                 }`}
                                 onClick={() => setAttendance(true)}
                             >
-                                참석할게요
+                                出席
                             </button>
                             <button
                                 className={`w-1/2 py-3 rounded-lg ${
@@ -149,36 +170,43 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
                                 }`}
                                 onClick={() => setAttendance(false)}
                             >
-                                참석이 어려워요
+                                無法出席，但祝福滿滿
                             </button>
                         </div>
                     </div>
 
                     <div>
                         <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
-                            성함을 알려주세요
+                            姓名
                             <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
                         </label>
                         <input
                             className="w-full px-3 py-2 h-12 rounded-md shadow-md placeholder-[#999999]"
-                            placeholder="참석자 본인 성함"
+                            placeholder="姓名"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
                     <div>
-                        <label className="text-sm font-medium text-[#666666] mb-2">확인 연락처</label>
+                        <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
+                            Line ID
+                            {/*<span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>*/}
+                        </label>
+
                         <input
                             className="w-full px-3 py-2 h-12 rounded-md shadow-md placeholder-[#999999]"
-                            placeholder="핸드폰 번호 뒤 4자리"
-                            maxLength={4}
+                            placeholder="Line ID"
+                            // maxLength={4}
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label className="text-sm font-medium text-[#666666] mb-2">동행 인원을 알려주세요</label>
+                        <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
+                            預計幾位大人出席呢
+                            <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
+                        </label>
                         <input
                             className="w-full px-3 py-2 h-12 rounded-md shadow-md placeholder-[#999999]"
                             placeholder="0"
@@ -188,18 +216,61 @@ const RSVPModal: React.FC<RSVPModalProps> = ({isOpen, onClose}) => {
                             onChange={(e) => setCompanion(parseInt(e.target.value))}
                         />
                     </div>
+                    <div>
+
+                        <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
+                            預計幾位小孩同行呢
+                            <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
+                        </label>
+                        <input
+                            className="w-full px-3 py-2 h-12 rounded-md shadow-md placeholder-[#999999]"
+                            placeholder="0"
+                            maxLength={2}
+                            value={children}
+                            type={"number"}
+                            onChange={(e) => setChildren(parseInt(e.target.value))}
+                        />
+                    </div>
+                    <div>
+                        {/*<label*/}
+                        {/*    className="text-sm font-medium text-[#666666] mb-2">需要幾張嬰兒椅（小朋友需要單獨座位的話請輸入0）</label>*/}
+                        <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
+                            需要幾張嬰兒椅（小朋友需要單獨座位的話請輸入0）
+                            <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
+                        </label>
+                        <input
+                            className="w-full px-3 py-2 h-12 rounded-md shadow-md placeholder-[#999999]"
+                            placeholder="0"
+                            maxLength={2}
+                            value={childrenSeat}
+                            type={"number"}
+                            onChange={(e) => setChildrenSeat(parseInt(e.target.value))}
+                        />
+                    </div>
+                    <div>
+                        {/*<label className="text-sm font-medium text-[#666666] mb-2">我們的素食人數  （若無請輸入0）</label>*/}
+                        <label className="text-sm font-medium text-[#666666] flex items-center mb-2">
+                            我們的素食人數  （若無請輸入0）
+                            <span className="ml-1 w-1 h-1 bg-[#E9CBCF] rounded-full"></span>
+                        </label>
+                        <input
+                            className="w-full px-3 py-2 h-12 rounded-md shadow-md placeholder-[#999999]"
+                            placeholder="0"
+                            maxLength={2}
+                            value={vegetarian}
+                            type={"number"}
+                            onChange={(e) => setVegetarian(parseInt(e.target.value))}
+                        />
+                    </div>
                 </div>
 
                 <button
                     className="w-full bg-[#c2b0a2] text-white rounded-lg h-12 mt-6"
                     onClick={onClickSend}
                 >
-                    전달하기
+                    按鍵回覆
                 </button>
             </div>
-
         </div>
     );
-};
-
-export default RSVPModal;
+}
