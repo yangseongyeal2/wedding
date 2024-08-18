@@ -10,6 +10,7 @@ import RSVPTW from "@/app/tw/component/RSVPTW";
 import FloatingModalTW from "@/app/tw/component/FloatingModalTW";
 import FloatingButtonTW from "@/app/tw/component/FloatingButtonTW";
 import AudioButtonTW from "@/app/tw/component/AudioButtonTW";
+import ScrollVideo from "@/app/tw/component/scroll-video-component";
 
 
 export default function TW() {
@@ -39,6 +40,7 @@ export default function TW() {
                     {showOverlay && (
                         <TextReveal text={fullWelcomeText}/>
                     )}
+                    <ScrollVideo src={'/tw/7-2.mp4'}/>
                 </div>
                 <FloatingButtonTW theme={theme}/>
                 <FloatingModalTW/>
