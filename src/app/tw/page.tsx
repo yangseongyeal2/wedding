@@ -1,6 +1,4 @@
 'use client'
-
-import TextReveal from "@/app/component/TextReveal";
 import {ToastContainer} from "react-toastify";
 import {LoadingOverlay} from "@/app/component/LoadingOverlay";
 import {createTheme, ThemeProvider} from "@mui/material";
@@ -11,6 +9,7 @@ import FloatingModalTW from "@/app/tw/component/FloatingModalTW";
 import FloatingButtonTW from "@/app/tw/component/FloatingButtonTW";
 import AudioButtonTW from "@/app/tw/component/AudioButtonTW";
 import ScrollVideo from "@/app/tw/component/scroll-video-component";
+import TextRevealTW from "@/app/tw/component/TextRevealTW";
 
 
 export default function TW() {
@@ -38,7 +37,7 @@ export default function TW() {
                     <ImagesColTw/>
                     <RSVPTW/>
                     {showOverlay && (
-                        <TextReveal text={fullWelcomeText}/>
+                        <TextRevealTW text={fullWelcomeText}/>
                     )}
                     <ScrollVideo src={'/tw/7-2.mp4'}/>
                 </div>

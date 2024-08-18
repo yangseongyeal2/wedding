@@ -81,6 +81,13 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'MoonTime';
+  src: url('/fonts/MoonTime-Regular.otf') format('opentype'),
+  url('/fonts/MoonTime-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;

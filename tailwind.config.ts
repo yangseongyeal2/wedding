@@ -35,6 +35,7 @@ const config: Config = {
       },
       fontFamily: {
         'ink-lipquid': ['InkLipquid', 'sans-serif'],
+        'MoonTime': ['MoonTime', 'sans-serif'],
       },
 
     },
