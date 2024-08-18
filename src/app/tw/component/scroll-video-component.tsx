@@ -9,6 +9,7 @@ const ScrollVideo: React.FC<ScrollVideoProps> = ({ src }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
 
   useEffect(() => {
     console.log("Component mounted. Video src:", src);
@@ -18,7 +19,7 @@ const ScrollVideo: React.FC<ScrollVideoProps> = ({ src }) => {
           console.log("Intersection status changed. Is visible:", newIsVisible);
           setIsVisible(newIsVisible);
         },
-        { threshold: 0.5 }  // Changed from 1.0 to 0.5
+        { threshold: 0.5 }
     );
 
     if (containerRef.current) {
@@ -48,18 +49,29 @@ const ScrollVideo: React.FC<ScrollVideoProps> = ({ src }) => {
       setIsVideoReady(true);
     };
 
-    videoElement.addEventListener('canplay', handleCanPlay);
-    console.log("CanPlay event listener added");
+    const handleLoadedMetadata = () => {
+      console.log("Video metadata loaded");
+      if (videoElement.videoWidth && videoElement.videoHeight) {
+        const ratio = videoElement.videoHeight / videoElement.videoWidth;
+        setAspectRatio(ratio);
+        console.log("Video aspect ratio set:", ratio);
+      }
+    };
 
-    // Check if video is already loaded
+    videoElement.addEventListener('canplay', handleCanPlay);
+    videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+    console.log("Event listeners added");
+
     if (videoElement.readyState >= 3) {
       console.log("Video is already loaded");
       setIsVideoReady(true);
+      handleLoadedMetadata();
     }
 
     return () => {
       videoElement.removeEventListener('canplay', handleCanPlay);
-      console.log("CanPlay event listener removed");
+      videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      console.log("Event listeners removed");
     };
   }, []);
 
@@ -77,17 +89,20 @@ const ScrollVideo: React.FC<ScrollVideoProps> = ({ src }) => {
   }, [isVisible, isVideoReady]);
 
   return (
-      <div ref={containerRef} style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div
+          className="w-full bg-black overflow-hidden"
+          ref={containerRef}
+          style={{ aspectRatio: aspectRatio ? `1 / ${aspectRatio}` : undefined }}
+      >
         <video
             ref={videoRef}
             src={src}
-            style={{ maxWidth: '100%', maxHeight: '100%' }}
+            className="w-full h-full object-fill"
             loop
             muted
             playsInline
             autoPlay
             preload="auto"
-            onLoadedMetadata={() => console.log("Video metadata loaded")}
             onError={(e) => console.error("Video error:", (e.target as HTMLVideoElement).error)}
         />
       </div>
