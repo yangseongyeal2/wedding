@@ -1,17 +1,31 @@
 import {Fab, useMediaQuery, Zoom} from "@mui/material";
 import {HiCursorClick} from "react-icons/hi";
 import {FaCar, FaMap} from "react-icons/fa";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useAtom} from "jotai/index";
 import {floatingButtonOpenAtom, showModalMoneyAtom} from "@/app/atom/atom";
 
-export default function FloatingButtonTW({theme}: { theme: any }) {
-    //const [isOpen, setIsOpen] = useState(false);
+export default function FloatingButtonTW({theme, containerRef}: { theme: any, containerRef: React.RefObject<HTMLDivElement> }) {
     const [isOpen, setIsOpen] = useAtom(floatingButtonOpenAtom);
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const fontSize = isSmallScreen ? 18 : 25; // 작은 화면에서는 18px, 큰 화면에서는 25px
+    const fontSize = isSmallScreen ? 18 : 25;
     const fabSize = isSmallScreen ? 40 : 56;
     const [isModalOpen, setIsModalOpen] = useAtom(showModalMoneyAtom);
+    const [rightOffset, setRightOffset] = useState(0);
+
+    useEffect(() => {
+        const updatePosition = () => {
+            if (containerRef.current) {
+                const containerRect = containerRef.current.getBoundingClientRect();
+                const newRightOffset = window.innerWidth - containerRect.right;
+                setRightOffset(newRightOffset + 16); // 16px is equivalent to right-4
+            }
+        };
+
+        updatePosition();
+        window.addEventListener('resize', updatePosition);
+        return () => window.removeEventListener('resize', updatePosition);
+    }, [containerRef]);
 
     const handleActionClick = (action: string) => {
         if (action === "map") {
@@ -21,9 +35,10 @@ export default function FloatingButtonTW({theme}: { theme: any }) {
         } else if (action === "money") {
             setIsModalOpen(true);
         }
-    };// 작은 화면에서는 40px, 큰 화면에서는 56px
+    };
+
     return (
-        <div className="sticky bottom-4 pr-4 flex flex-col items-end space-y-4">
+        <div className="fixed bottom-4 flex flex-col items-end space-y-4 bg-transparent border-none" style={{right: `${rightOffset}px`}}>
             <Fab
                 aria-label="add"
                 onClick={() => setIsOpen(!isOpen)}
@@ -34,23 +49,6 @@ export default function FloatingButtonTW({theme}: { theme: any }) {
 
             <Zoom in={isOpen} unmountOnExit>
                 <div className="flex flex-col items-end space-y-2">
-                    {/*<div className="flex items-center space-x-2">*/}
-                    {/*    <div className={'bg-white py-2 px-2'}>*/}
-                    {/*        <span className="text-[#4C6174]">마음 전하실곳</span>*/}
-                    {/*    </div>*/}
-                    {/*    <Fab*/}
-                    {/*        aria-label="contact"*/}
-                    {/*        onClick={() => handleActionClick('money')}*/}
-                    {/*        style={{*/}
-                    {/*            backgroundColor: '#3B5998',*/}
-                    {/*            color: 'white',*/}
-                    {/*            width: fabSize,*/}
-                    {/*            height: fabSize*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        <FaEnvelope style={{fontSize}}/>*/}
-                    {/*    </Fab>*/}
-                    {/*</div>*/}
                     <div className="flex items-center space-x-2">
                         <div className={'bg-white py-2 px-2'}>
                             <span className="text-[#4C6174]">交通資訊</span>
