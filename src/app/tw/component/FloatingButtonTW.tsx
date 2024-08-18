@@ -1,7 +1,7 @@
 import {Fab, useMediaQuery, Zoom} from "@mui/material";
 import {HiCursorClick} from "react-icons/hi";
 import {FaCar, FaMap} from "react-icons/fa";
-import React, {useState} from "react";
+import React from "react";
 import {useAtom} from "jotai/index";
 import {floatingButtonOpenAtom, showModalMoneyAtom} from "@/app/atom/atom";
 
@@ -15,9 +15,9 @@ export default function FloatingButtonTW({theme}: { theme: any }) {
 
     const handleActionClick = (action: string) => {
         if (action === "map") {
-            window.open("https://maps.app.goo.gl/fC19gtJwWsQHwQWY6");
+            window.open("https://maps.app.goo.gl/6Hdn7r3EUbVBdxh38");
         } else if (action === "traffic") {
-            window.open("https://www.sheratongrandtaipei.com/websev?lang=kr&ref=pages&cat=1&id=3");
+            window.open("https://www.sheratongrandtaipei.com/websev?lang=zh-tw&ref=pages&cat=5&id=35");
         } else if (action === "money") {
             setIsModalOpen(true);
         }

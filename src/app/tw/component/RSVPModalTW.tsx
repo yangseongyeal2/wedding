@@ -36,21 +36,21 @@ export default function RSVPModalTW({isOpen, onClose}: RSVPModalProps) {
             return;
         }
         if (attendance === null) {
-            toast.error("참석하실 수 있나요?", {
+            toast.error("您能参加吗？", {
                 position: "bottom-center",
             });
             hideLoading()
             return;
         }
         if (name === '') {
-            toast.error("성함을 알려주세요", {
+            toast.error("请告诉我您的姓名。", {
                 position: "bottom-center",
             });
             hideLoading()
             return;
         }
         if (phone === '') {
-            toast.error("확인 연락처를 알려주세요.", {
+            toast.error("请告诉我您的联系方式。", {
                 position: "bottom-center",
             });
             hideLoading()
@@ -70,7 +70,7 @@ export default function RSVPModalTW({isOpen, onClose}: RSVPModalProps) {
             vegetarian:vegetarian,
         })
         await guestRepository.uploadGuest(guest)
-        toast.success("참석 의사가 전달되었습니다.", {
+        toast.success("您的參加意願已經傳達。", {
             position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: true,

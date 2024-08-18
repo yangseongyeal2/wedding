@@ -1,5 +1,5 @@
 'use client'
-import AudioButton from "@/app/component/AudioButton";
+
 import TextReveal from "@/app/component/TextReveal";
 import {ToastContainer} from "react-toastify";
 import {LoadingOverlay} from "@/app/component/LoadingOverlay";
@@ -9,6 +9,7 @@ import ImagesColTw from "@/app/tw/component/ImagesColTw";
 import RSVPTW from "@/app/tw/component/RSVPTW";
 import FloatingModalTW from "@/app/tw/component/FloatingModalTW";
 import FloatingButtonTW from "@/app/tw/component/FloatingButtonTW";
+import AudioButtonTW from "@/app/tw/component/AudioButtonTW";
 
 
 export default function TW() {
@@ -31,7 +32,7 @@ export default function TW() {
     return (
         <ThemeProvider theme={theme}>
             <main className="max-w-xl mx-auto bg-custom-beige w-full">
-                <AudioButton/>
+                <AudioButtonTW/>
                 <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar">
                     <ImagesColTw/>
                     <RSVPTW/>
