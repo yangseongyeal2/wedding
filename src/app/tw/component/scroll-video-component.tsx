@@ -97,12 +97,13 @@ const ScrollVideo: React.FC<ScrollVideoProps> = ({ src }) => {
         <video
             ref={videoRef}
             src={src}
-            className="w-full h-full object-fill"
+            className="w-full h-full object-cover"
             loop
             muted
             playsInline
             autoPlay
             preload="auto"
+            poster={src.replace(/\.[^/.]+$/, ".jpg")}  // Assumes a jpg poster with the same name exists
             onError={(e) => console.error("Video error:", (e.target as HTMLVideoElement).error)}
         />
       </div>

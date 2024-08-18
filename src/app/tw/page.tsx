@@ -2,14 +2,14 @@
 import {ToastContainer} from "react-toastify";
 import {LoadingOverlay} from "@/app/component/LoadingOverlay";
 import {createTheme, ThemeProvider} from "@mui/material";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ImagesColTw from "@/app/tw/component/ImagesColTw";
 import RSVPTW from "@/app/tw/component/RSVPTW";
 import FloatingModalTW from "@/app/tw/component/FloatingModalTW";
 import FloatingButtonTW from "@/app/tw/component/FloatingButtonTW";
 import AudioButtonTW from "@/app/tw/component/AudioButtonTW";
-import ScrollVideo from "@/app/tw/component/scroll-video-component";
 import TextRevealTW from "@/app/tw/component/TextRevealTW";
+import Image from "next/image";
 
 
 export default function TW() {
@@ -36,10 +36,20 @@ export default function TW() {
                 <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar">
                     <ImagesColTw/>
                     <RSVPTW/>
+                    <div className="relative w-full" style={{paddingBottom: '140.3%'}}>
+                        <Image
+                            src="/tw/7.png"
+                            fill
+                            style={{objectFit: 'cover'}}
+                            alt=""
+                            priority
+                        />
+                    </div>
                     {showOverlay && (
                         <TextRevealTW text={fullWelcomeText}/>
                     )}
-                    <ScrollVideo src={'/tw/7-2.mp4'}/>
+
+                    {/*<ScrollVideo src={'/tw/7-2.mp4'}/>*/}
                 </div>
                 <FloatingButtonTW theme={theme}/>
                 <FloatingModalTW/>
