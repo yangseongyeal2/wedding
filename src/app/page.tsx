@@ -11,12 +11,8 @@ import TextRevealTW from "@/app/tw/component/TextRevealTW";
 import SampleImagesColTw from "@/app/sample/component/SampleImagesColTw";
 import ShareButton from "@/app/component/ShareButton";
 import SampleImagesColTw2 from "@/app/sample/component/SampleImagesColTw2";
-import ScrollableGallery, {GalleryImage} from "@/app/component/scrollable-gallery-component";
-import Carousel from "@/app/component/scrollable-gallery-component";
-import BasicImageDisplay from "@/app/component/scrollable-gallery-component";
-import BasicSwiper from "@/app/component/scrollable-gallery-component";
 import CoverflowSwiper from "@/app/component/scrollable-gallery-component";
-import CenteredSwiper from "@/app/component/scrollable-gallery-component";
+import RSVPSample from "@/app/sample/component/RSVPSample";
 
 
 export default function TW() {
@@ -47,9 +43,9 @@ export default function TW() {
                 <AudioButtonTW/>
                 <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar bg-custom-beige">
                     <SampleImagesColTw/>
-                    <CoverflowSwiper images={images}/>
                     <SampleImagesColTw2/>
-                    <RSVPTW/>
+                    <CoverflowSwiper images={images}/>
+                    <RSVPSample/>
                     <ShareButton/>
                     {showOverlay && (
                         <TextRevealTW text={fullWelcomeText}/>

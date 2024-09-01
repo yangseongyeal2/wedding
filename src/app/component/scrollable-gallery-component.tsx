@@ -27,16 +27,26 @@ const CoverflowSwiper: React.FC<CoverflowSwiperProps> = ({ images }) => {
                     color: #ffffff; /* White */
                     text-shadow: 0 0 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for visibility */
                 }
+
                 .swiper-pagination-bullet {
                     background-color: #ffffff; /* White */
                     opacity: 0.7;
                     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for visibility */
                 }
+
                 .swiper-pagination-bullet-active {
                     background-color: #ffffff; /* White */
                     opacity: 1;
                 }
             `}</style>
+            <div className="relative w-full pb-[100%] bg-[#fdf7ed]">
+                <div className="absolute inset-0 flex justify-center items-center">
+                    <h1 className="font-Bright text-6xl font-bold text-[#023e7d]">GALLERY</h1>
+                </div>
+            </div>
+            {/*<div className="flex justify-center items-center  bg-[#fdf7ed]">*/}
+            {/*    <h1 className="text-6xl font-bold text-[#1a2e58]">GALLERY</h1>*/}
+            {/*</div>*/}
             <Swiper
                 effect={'coverflow'}
                 grabCursor={true}
@@ -49,7 +59,7 @@ const CoverflowSwiper: React.FC<CoverflowSwiperProps> = ({ images }) => {
                     modifier: 1,
                     slideShadows: true,
                 }}
-                pagination={{ clickable: true }}
+                pagination={{clickable: true}}
                 navigation={true}
                 modules={[EffectCoverflow, Pagination, Navigation]}
                 className="w-full h-[calc(100vh-100px)]"
@@ -61,7 +71,7 @@ const CoverflowSwiper: React.FC<CoverflowSwiperProps> = ({ images }) => {
                                 src={image.src}
                                 alt={image.alt}
                                 fill
-                                style={{ objectFit: 'cover' }}
+                                style={{objectFit: 'cover'}}
                             />
                         </div>
                     </SwiperSlide>

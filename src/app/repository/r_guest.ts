@@ -14,6 +14,17 @@ class GuestRepository {
         }
 
     }
+    async uploadGuestSample(guest: GuestModel):Promise<GuestModel | Error> {
+        try{
+            const guestRef = doc(db, 'guestsSample', guest.id).withConverter(guestModelConverter);
+            await setDoc(guestRef, guest)
+            return guest;
+        }catch (err){
+            console.error(`error:${err}`)
+            throw err;
+        }
+
+    }
 }
 
 export const guestRepository = new GuestRepository()

@@ -14,7 +14,7 @@ export default function SampleImagesColTw() {
                     priority
                 />
             </div>
-            <div className="relative w-full" style={{paddingBottom: '140.3%'}}>
+            <div className="relative w-full" style={{paddingBottom: '100%'}}>
                 <Image
                     src="/sample/2.png"
                     fill
@@ -23,7 +23,7 @@ export default function SampleImagesColTw() {
                     priority
                 />
             </div>
-            <div className="relative w-full" style={{paddingBottom: '140.3%'}}>
+            <div className="relative w-full" style={{paddingBottom: '140%'}}>
                 <button><Image
                     src="/sample/3.png"
                     fill
