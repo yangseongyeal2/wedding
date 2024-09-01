@@ -1,9 +1,10 @@
 import {Fab, useMediaQuery, Zoom} from "@mui/material";
-import {FaCar, FaMap} from "react-icons/fa";
+import {FaCalendar, FaCar, FaMap} from "react-icons/fa";
 import React, {useEffect, useState} from "react";
 import {useAtom} from "jotai/index";
 import {floatingButtonOpenAtom, showModalMoneyAtom} from "@/app/atom/atom";
 import {IoMdMenu} from "react-icons/io";
+import {addToCalendar} from "@/app/calendar/addToCalendar";
 
 export default function FloatingButtonTW({theme, containerRef}: { theme: any, containerRef: React.RefObject<HTMLDivElement> }) {
     const [isOpen, setIsOpen] = useAtom(floatingButtonOpenAtom);
@@ -34,6 +35,18 @@ export default function FloatingButtonTW({theme, containerRef}: { theme: any, co
             window.open("https://www.sheratongrandtaipei.com/websev?lang=zh-tw&ref=pages&cat=5&id=35");
         } else if (action === "money") {
             setIsModalOpen(true);
+        }else if(action === "calendar"){
+            const weddingDate = new Date('2024-09-15T14:00:00');
+            const location = '서울시 강남구 테헤란로 123';
+            const event = {
+                title: '우리의 결혼식',
+                description: '소중한 날에 함께해 주세요.',
+                start: [weddingDate.getFullYear(), weddingDate.getMonth() + 1, weddingDate.getDate()] as [number, number, number],
+                duration: {hours: 2, minutes: 0},
+                location: location
+            };
+
+            addToCalendar(event);
         }
     };
 
@@ -82,6 +95,23 @@ export default function FloatingButtonTW({theme, containerRef}: { theme: any, co
                             }}
                         >
                             <FaMap style={{fontSize}}/>
+                        </Fab>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <div className={'bg-white py-2 px-2'}>
+                            <span className="text-[#4C6174]">Save Calendar</span>
+                        </div>
+                        <Fab
+                            aria-label="contact"
+                            onClick={() => handleActionClick('calendar')}
+                            style={{
+                                backgroundColor: '#3B5998',
+                                color: 'white',
+                                width: fabSize,
+                                height: fabSize
+                            }}
+                        >
+                            <FaCalendar style={{fontSize}}/>
                         </Fab>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ import ShareButton from "@/app/component/ShareButton";
 import SampleImagesColTw2 from "@/app/sample/component/SampleImagesColTw2";
 import CoverflowSwiper from "@/app/component/scrollable-gallery-component";
 import RSVPSample from "@/app/sample/component/RSVPSample";
+import AddToCalendarButton from "@/app/calendar/AddToCalendarButtonProps";
 
 
 export default function TW() {
@@ -36,6 +37,7 @@ export default function TW() {
         // ... 더 많은 이미지 추가
     ];
 
+
     return (
         <ThemeProvider theme={theme}>
             <main className="max-w-xl mx-auto bg-custom-beige w-full">
@@ -45,6 +47,7 @@ export default function TW() {
                     <SampleImagesColTw2/>
                     <CoverflowSwiper images={images}/>
                     <RSVPSample/>
+                    <AddToCalendarButton/>
                     <ShareButton/>
                     {showOverlay && (
                         <TextRevealTW text={fullWelcomeText}/>
