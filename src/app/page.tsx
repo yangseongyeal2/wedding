@@ -12,7 +12,6 @@ import ShareButton from "@/app/component/ShareButton";
 import SampleImagesColTw2 from "@/app/sample/component/SampleImagesColTw2";
 import CoverflowSwiper from "@/app/component/scrollable-gallery-component";
 import RSVPSample from "@/app/sample/component/RSVPSample";
-import AddToCalendarButton from "@/app/calendar/AddToCalendarButtonProps";
 
 
 export default function TW() {
@@ -47,7 +46,7 @@ export default function TW() {
                     <SampleImagesColTw2/>
                     <CoverflowSwiper images={images}/>
                     <RSVPSample/>
-                    <AddToCalendarButton/>
+                    {/*<AddToCalendarButton/>*/}
                     <ShareButton/>
                     {showOverlay && (
                         <TextRevealTW text={fullWelcomeText}/>

@@ -4,7 +4,6 @@ import React, {useEffect, useState} from "react";
 import {useAtom} from "jotai/index";
 import {floatingButtonOpenAtom, showModalMoneyAtom} from "@/app/atom/atom";
 import {IoMdMenu} from "react-icons/io";
-import {addToCalendar} from "@/app/calendar/addToCalendar";
 
 export default function FloatingButtonTW({theme, containerRef}: { theme: any, containerRef: React.RefObject<HTMLDivElement> }) {
     const [isOpen, setIsOpen] = useAtom(floatingButtonOpenAtom);
@@ -38,15 +37,41 @@ export default function FloatingButtonTW({theme, containerRef}: { theme: any, co
         }else if(action === "calendar"){
             const weddingDate = new Date('2024-09-15T14:00:00');
             const location = '서울시 강남구 테헤란로 123';
-            const event = {
-                title: '우리의 결혼식',
-                description: '소중한 날에 함께해 주세요.',
-                start: [weddingDate.getFullYear(), weddingDate.getMonth() + 1, weddingDate.getDate()] as [number, number, number],
-                duration: {hours: 2, minutes: 0},
-                location: location
-            };
+            // const event = {
+            //     title: '우리의 결혼식',
+            //     description: '소중한 날에 함께해 주세요.',
+            //     start: [weddingDate.getFullYear(), weddingDate.getMonth() + 1, weddingDate.getDate()] as [number, number, number],
+            //     duration: {hours: 2, minutes: 0},
+            //     location: location
+            // };
+            //
+            // addToCalendar(event);
+            const title = encodeURIComponent('우리의 결혼식');
+            const desc = encodeURIComponent('소중한 날에 함께해 주세요.');
+            const encodedLocation = encodeURIComponent(location);
 
-            addToCalendar(event);
+            const startDate = weddingDate.toISOString().replace(/-|:|\.\d+/g, '');
+            const endDate = new Date(weddingDate.getTime() + 2 * 60 * 60 * 1000).toISOString().replace(/-|:|\.\d+/g, '');
+
+            const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${desc}&location=${encodedLocation}&sf=true&output=xml`;
+
+            const iosCalendarUrl = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+URL:${encodedLocation}
+DTSTART:${startDate}
+DTEND:${endDate}
+SUMMARY:${title}
+DESCRIPTION:${desc}
+LOCATION:${encodedLocation}
+END:VEVENT
+END:VCALENDAR`;
+
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                window.open(iosCalendarUrl);
+            } else {
+                window.open(googleCalendarUrl);
+            }
         }
     };
 
@@ -97,23 +122,23 @@ export default function FloatingButtonTW({theme, containerRef}: { theme: any, co
                             <FaMap style={{fontSize}}/>
                         </Fab>
                     </div>
-                    <div className="flex items-center space-x-2">
-                        <div className={'bg-white py-2 px-2'}>
-                            <span className="text-[#4C6174]">Save Calendar</span>
-                        </div>
-                        <Fab
-                            aria-label="contact"
-                            onClick={() => handleActionClick('calendar')}
-                            style={{
-                                backgroundColor: '#3B5998',
-                                color: 'white',
-                                width: fabSize,
-                                height: fabSize
-                            }}
-                        >
-                            <FaCalendar style={{fontSize}}/>
-                        </Fab>
-                    </div>
+                    {/*<div className="flex items-center space-x-2">*/}
+                    {/*    <div className={'bg-white py-2 px-2'}>*/}
+                    {/*        <span className="text-[#4C6174]">Save Calendar</span>*/}
+                    {/*    </div>*/}
+                    {/*    <Fab*/}
+                    {/*        aria-label="contact"*/}
+                    {/*        onClick={() => handleActionClick('calendar')}*/}
+                    {/*        style={{*/}
+                    {/*            backgroundColor: '#3B5998',*/}
+                    {/*            color: 'white',*/}
+                    {/*            width: fabSize,*/}
+                    {/*            height: fabSize*/}
+                    {/*        }}*/}
+                    {/*    >*/}
+                    {/*        <FaCalendar style={{fontSize}}/>*/}
+                    {/*    </Fab>*/}
+                    {/*</div>*/}
                 </div>
             </Zoom>
         </div>
