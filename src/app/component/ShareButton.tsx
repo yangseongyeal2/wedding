@@ -2,9 +2,10 @@ import Image from "next/image";
 import React from "react";
 
 export default function ShareButton() {
-    const url = window.location.href;
+
     const title = '타이틀';
     const handleShare = () => {
+        const url = window.location.href;
         const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
         window.open(lineUrl, '_blank');
     };

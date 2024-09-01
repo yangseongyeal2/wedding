@@ -40,7 +40,6 @@ export default function TW() {
                     {showOverlay && (
                         <TextRevealTW text={fullWelcomeText}/>
                     )}
-                    {/*<ScrollVideo src={'/tw/7-2.mp4'}/>*/}
                 </div>
                 <div ref={containerRef} className="relative w-full max-w-[your-max-width] mx-auto">
                     {/* Your other content */}
