@@ -10,6 +10,13 @@ import AudioButtonTW from "@/app/tw/component/AudioButtonTW";
 import TextRevealTW from "@/app/tw/component/TextRevealTW";
 import SampleImagesColTw from "@/app/sample/component/SampleImagesColTw";
 import ShareButton from "@/app/component/ShareButton";
+import SampleImagesColTw2 from "@/app/sample/component/SampleImagesColTw2";
+import ScrollableGallery, {GalleryImage} from "@/app/component/scrollable-gallery-component";
+import Carousel from "@/app/component/scrollable-gallery-component";
+import BasicImageDisplay from "@/app/component/scrollable-gallery-component";
+import BasicSwiper from "@/app/component/scrollable-gallery-component";
+import CoverflowSwiper from "@/app/component/scrollable-gallery-component";
+import CenteredSwiper from "@/app/component/scrollable-gallery-component";
 
 
 export default function TW() {
@@ -27,7 +34,12 @@ export default function TW() {
 
         return () => clearTimeout(timer);
     }, []);
-
+    const images = [
+        { src: '/sample/gallery1.JPG', alt: 'Image 1' },
+        { src: '/sample/gallery2.JPG', alt: 'Image 2' },
+        { src: '/sample/gallery3.JPG', alt: 'Image 3' },
+        // ... 더 많은 이미지 추가
+    ];
 
     return (
         <ThemeProvider theme={theme}>
@@ -35,6 +47,8 @@ export default function TW() {
                 <AudioButtonTW/>
                 <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar bg-custom-beige">
                     <SampleImagesColTw/>
+                    <CoverflowSwiper images={images}/>
+                    <SampleImagesColTw2/>
                     <RSVPTW/>
                     <ShareButton/>
                     {showOverlay && (

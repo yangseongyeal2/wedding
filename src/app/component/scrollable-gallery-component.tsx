@@ -1,82 +1,74 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 
-interface GalleryImage {
-  src: string;
-  alt: string;
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+export interface GalleryImage {
+    src: string;
+    alt: string;
 }
 
-interface ScrollableGalleryProps {
-  images: GalleryImage[];
+interface CoverflowSwiperProps {
+    images: GalleryImage[];
 }
 
-const ScrollableGallery: React.FC<ScrollableGalleryProps> = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const galleryRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (gallery) {
-      const scrollTo = currentIndex * gallery.offsetWidth;
-      gallery.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
-  }, [currentIndex]);
-
-  const handleScroll = () => {
-    const gallery = galleryRef.current;
-    if (gallery) {
-      const index = Math.round(gallery.scrollLeft / gallery.offsetWidth);
-      setCurrentIndex(index);
-    }
-  };
-
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  return (
-    <div className="relative w-full overflow-hidden">
-      <div
-        ref={galleryRef}
-        className="flex snap-x snap-mandatory overflow-x-auto scrollbar-hide"
-        style={{ scrollSnapType: 'x mandatory' }}
-        onScroll={handleScroll}
-      >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-full snap-center"
-            style={{ scrollSnapAlign: 'center' }}
-          >
-            <div className="relative w-full h-[calc(100vh-100px)]">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-      <button
-        onClick={prevImage}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
-      >
-        ←
-      </button>
-      <button
-        onClick={nextImage}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
-      >
-        →
-      </button>
-    </div>
-  );
+const CoverflowSwiper: React.FC<CoverflowSwiperProps> = ({ images }) => {
+    return (
+        <>
+            <style jsx global>{`
+                .swiper-button-next,
+                .swiper-button-prev {
+                    color: #ffffff; /* White */
+                    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for visibility */
+                }
+                .swiper-pagination-bullet {
+                    background-color: #ffffff; /* White */
+                    opacity: 0.7;
+                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for visibility */
+                }
+                .swiper-pagination-bullet-active {
+                    background-color: #ffffff; /* White */
+                    opacity: 1;
+                }
+            `}</style>
+            <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                coverflowEffect={{
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                }}
+                pagination={{ clickable: true }}
+                navigation={true}
+                modules={[EffectCoverflow, Pagination, Navigation]}
+                className="w-full h-[calc(100vh-100px)]"
+            >
+                {images.map((image, index) => (
+                    <SwiperSlide key={index} className="w-3/4">
+                        <div className="relative w-full h-full">
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                fill
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </>
+    );
 };
 
-export default ScrollableGallery;
+export default CoverflowSwiper;

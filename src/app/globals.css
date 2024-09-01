@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import 'swiper/css';
+@import 'swiper/css/effect-coverflow';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 /*:root {*/
 /*  --foreground-rgb: 0, 0, 0;*/
 /*  --background-start-rgb: 214, 219, 220;*/
@@ -117,5 +123,13 @@ input[type="number"] {
 .audio-control-svg:hover {
   opacity: 0.8;
 }
-
-
+.swiper-button-next,
+.swiper-button-prev {
+  color: #4b5563; /* Gray-600 */
+}
+.swiper-pagination-bullet {
+  background-color: #9ca3af; /* Gray-400 */
+}
+.swiper-pagination-bullet-active {
+  background-color: #4b5563; /* Gray-600 */
+}
