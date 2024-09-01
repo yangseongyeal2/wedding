@@ -1,9 +1,9 @@
 import {Fab, useMediaQuery, Zoom} from "@mui/material";
-import {HiCursorClick} from "react-icons/hi";
 import {FaCar, FaMap} from "react-icons/fa";
 import React, {useEffect, useState} from "react";
 import {useAtom} from "jotai/index";
 import {floatingButtonOpenAtom, showModalMoneyAtom} from "@/app/atom/atom";
+import {IoMdMenu} from "react-icons/io";
 
 export default function FloatingButtonTW({theme, containerRef}: { theme: any, containerRef: React.RefObject<HTMLDivElement> }) {
     const [isOpen, setIsOpen] = useAtom(floatingButtonOpenAtom);
@@ -44,7 +44,8 @@ export default function FloatingButtonTW({theme, containerRef}: { theme: any, co
                 onClick={() => setIsOpen(!isOpen)}
                 style={{backgroundColor: '#3B5998', color: 'white', width: fabSize, height: fabSize}}
             >
-                <HiCursorClick style={{fontSize}}/>
+                {/*<HiCursorClick style={{fontSize}}/>*/}
+                <IoMdMenu style={{fontSize}}/>
             </Fab>
 
             <Zoom in={isOpen} unmountOnExit>

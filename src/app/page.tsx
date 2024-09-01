@@ -1,22 +1,24 @@
 'use client'
-
-import React, {useEffect, useState} from "react";
-import {createTheme, ThemeProvider} from '@mui/material';
-import FloatingModal from "@/app/component/FloatingModal";
-import ImagesCol from "@/app/component/ImagesCol";
-import TextReveal from "@/app/component/TextReveal";
 import {ToastContainer} from "react-toastify";
 import {LoadingOverlay} from "@/app/component/LoadingOverlay";
-import AudioButton from "@/app/component/AudioButton";
-import RSVP from "@/app/component/RSVP";
-import FloatingButton from "@/app/component/FloatingButton";
+import {createTheme, ThemeProvider} from "@mui/material";
+import React, {useEffect, useRef, useState} from "react";
+import RSVPTW from "@/app/tw/component/RSVPTW";
+import FloatingModalTW from "@/app/tw/component/FloatingModalTW";
+import FloatingButtonTW from "@/app/tw/component/FloatingButtonTW";
+import AudioButtonTW from "@/app/tw/component/AudioButtonTW";
+import TextRevealTW from "@/app/tw/component/TextRevealTW";
+import SampleImagesColTw from "@/app/sample/component/SampleImagesColTw";
+import ShareButton from "@/app/component/ShareButton";
 
-export default function Home() {
+
+export default function TW() {
+
     const [showOverlay, setShowOverlay] = useState(true);
-    //const [welcomeText, setWelcomeText] = useState("");
     const theme = createTheme();
+    const containerRef = useRef(null);
 
-    const fullWelcomeText = "소중한 분들을 초대합니다";
+    const fullWelcomeText = "We are getting married";
     const typingSpeed = 50; // ms per character
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -30,16 +32,21 @@ export default function Home() {
     return (
         <ThemeProvider theme={theme}>
             <main className="max-w-xl mx-auto bg-custom-beige w-full">
-                <AudioButton/>
-                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar">
-                    <ImagesCol />
+                <AudioButtonTW/>
+                <div className="flex flex-col overflow-y-auto w-full h-full no-scrollbar bg-custom-beige">
+                    <SampleImagesColTw/>
+                    <RSVPTW/>
+                    <ShareButton/>
                     {showOverlay && (
-                        <TextReveal text={fullWelcomeText}/>
+                        <TextRevealTW text={fullWelcomeText}/>
                     )}
-                    <RSVP/>
+                    {/*<ScrollVideo src={'/tw/7-2.mp4'}/>*/}
                 </div>
-                <FloatingButton theme={theme}/>
-                <FloatingModal/>
+                <div ref={containerRef} className="relative w-full max-w-[your-max-width] mx-auto">
+                    {/* Your other content */}
+                    <FloatingButtonTW theme={theme} containerRef={containerRef}/>
+                </div>
+                <FloatingModalTW/>
             </main>
             <ToastContainer
                 position="top-center"
@@ -49,7 +56,8 @@ export default function Home() {
                 pauseOnHover={false}
                 draggable={false}
             />
-            <LoadingOverlay />
+            <LoadingOverlay/>
         </ThemeProvider>
-    );
+    )
+
 }
