@@ -2,6 +2,7 @@ import {Box, Button, Modal} from "@mui/material";
 import React, {useState} from "react";
 import { useAtom } from 'jotai';
 import {showModalMoneyAtom} from "@/app/atom/atom";
+import AccountSection from "@/app/component/AccountSection";
 
 export default function FloatingModal() {
     const [isModalOpen, setIsModalOpen] = useAtom(showModalMoneyAtom);
@@ -51,25 +52,26 @@ export default function FloatingModal() {
                     <source src="/hi2.mp4" type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>
-                <div className={'flex flex-col'}><p id="modal-description" className="text-center">국민은행</p>
-                    <p id="modal-description" className="text-center">778802-04-189882</p>
-                    <p id="modal-description" className="text-center">양성열</p>
-                </div>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleCopy}
-                    sx={{
-                        mt: 2,
-                        backgroundColor: '#FFC0CB', // 옅은 분홍색 러블리한 색상
-                        color: 'white',
-                        '&:hover': {
-                            backgroundColor: '#FFB6C1', // 호버 색상
-                        },
-                    }}
-                >
-                    복사하기 🧡
-                </Button>
+                <AccountSection/>
+                {/*<div className={'flex flex-col'}><p id="modal-description" className="text-center">국민은행</p>*/}
+                {/*    <p id="modal-description" className="text-center">778802-04-189882</p>*/}
+                {/*    <p id="modal-description" className="text-center">양성열</p>*/}
+                {/*</div>*/}
+                {/*<Button*/}
+                {/*    variant="contained"*/}
+                {/*    color="primary"*/}
+                {/*    onClick={handleCopy}*/}
+                {/*    sx={{*/}
+                {/*        mt: 2,*/}
+                {/*        backgroundColor: '#FFC0CB', // 옅은 분홍색 러블리한 색상*/}
+                {/*        color: 'white',*/}
+                {/*        '&:hover': {*/}
+                {/*            backgroundColor: '#FFB6C1', // 호버 색상*/}
+                {/*        },*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    복사하기 🧡*/}
+                {/*</Button>*/}
             </div>
         </Box>
     </Modal>)
